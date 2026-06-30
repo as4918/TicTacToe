@@ -1,7 +1,6 @@
 /**
  * TicTacToe
- * UC5 validates whether a move is inside the board
- * and whether the selected cell is empty.
+ * UC6 places a player's symbol on the board.
  */
 
 public class TicTacToe {
@@ -14,21 +13,36 @@ public class TicTacToe {
 
     public static void main(String[] args) {
 
-        System.out.println(isValidMove(1, 1));
+        placeMove(1, 1, 'X');
+
+        printBoard();
 
     }
 
-    static boolean isValidMove(int row, int col) {
+    static void placeMove(int row, int col, char symbol) {
 
-        if (row < 0 || row > 2) {
-            return false;
+        board[row][col] = symbol;
+
+    }
+
+    static void printBoard() {
+
+        System.out.println("-------------");
+
+        for (int row = 0; row < 3; row++) {
+
+            System.out.print("| ");
+
+            for (int col = 0; col < 3; col++) {
+
+                System.out.print(board[row][col] + " | ");
+
+            }
+
+            System.out.println();
+            System.out.println("-------------");
+
         }
-
-        if (col < 0 || col > 2) {
-            return false;
-        }
-
-        return board[row][col] == '-';
 
     }
 
