@@ -1,69 +1,41 @@
 /**
  * TicTacToe
- * UC9 checks whether a player has won the game.
+ * UC10 checks whether the game has ended in a draw.
  */
 
 public class TicTacToe {
 
     static char[][] board = {
-            {'X', 'X', 'X'},
-            {'-', 'O', '-'},
-            {'O', '-', '-'}
+            {'X', 'O', 'X'},
+            {'X', 'O', 'O'},
+            {'O', 'X', 'X'}
     };
 
     public static void main(String[] args) {
 
-        if (hasWon('X')) {
-            System.out.println("Player X Wins!");
+        if (isDraw()) {
+            System.out.println("Game is a Draw!");
         } else {
-            System.out.println("Player X Has Not Won.");
+            System.out.println("Game is Not a Draw.");
         }
 
     }
 
-    static boolean hasWon(char symbol) {
+    static boolean isDraw() {
 
-        // Check rows
-        for (int i = 0; i < 3; i++) {
+        for (int row = 0; row < 3; row++) {
 
-            if (board[i][0] == symbol &&
-                board[i][1] == symbol &&
-                board[i][2] == symbol) {
+            for (int col = 0; col < 3; col++) {
 
-                return true;
+                if (board[row][col] == '-') {
+                    return false;
+                }
+
             }
 
         }
 
-        // Check columns
-        for (int i = 0; i < 3; i++) {
-
-            if (board[0][i] == symbol &&
-                board[1][i] == symbol &&
-                board[2][i] == symbol) {
-
-                return true;
-            }
-
-        }
-
-        // Main diagonal
-        if (board[0][0] == symbol &&
-            board[1][1] == symbol &&
-            board[2][2] == symbol) {
-
-            return true;
-        }
-
-        // Secondary diagonal
-        if (board[0][2] == symbol &&
-            board[1][1] == symbol &&
-            board[2][0] == symbol) {
-
-            return true;
-        }
-
-        return false;
+        return true;
     }
 
 }
