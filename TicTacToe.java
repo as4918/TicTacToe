@@ -1,6 +1,8 @@
+import java.util.Random;
+
 /**
  * TicTacToe
- * UC6 places a player's symbol on the board.
+ * UC7 allows the computer to make a random valid move.
  */
 
 public class TicTacToe {
@@ -11,17 +13,38 @@ public class TicTacToe {
             {'-', '-', '-'}
     };
 
+    static char computerSymbol = 'O';
+
+    static Random random = new Random();
+
     public static void main(String[] args) {
 
-        placeMove(1, 1, 'X');
+        computerMove();
 
         printBoard();
 
     }
 
-    static void placeMove(int row, int col, char symbol) {
+    static void computerMove() {
 
-        board[row][col] = symbol;
+        while (true) {
+
+            int slot = random.nextInt(9) + 1;
+
+            int row = (slot - 1) / 3;
+            int col = (slot - 1) % 3;
+
+            if (board[row][col] == '-') {
+
+                board[row][col] = computerSymbol;
+
+                System.out.println("Computer selected slot: " + slot);
+
+                break;
+
+            }
+
+        }
 
     }
 
